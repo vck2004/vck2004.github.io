@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main_bar_container">
+        <a href="#main" id="logo">logo</a>
+        <button id="login_btn">Login</button>
+        <button id="signup_btn">Sign up</button>
+        <input type="text" placeholder="Search" id="search_bar" autocomplete="off">
+        <button id="search_btn">Search</button>
+        <a href="#genres" id="see_genres">Genres</a>
+    </div>
+    <div id="content">this is main page</div>
+
+    <div id="login_modal" class="modal">
+        <div class="modal_content">
+            <span class="close">&times;</span>
+            <div class="input_field">
+                <input type="text" placeholder="Username" id="user" autocomplete="off">
+                <input type="text" placeholder="Password" id="user_pass" autocomplete="off">
+                <button id="modal_login_btn">Login</button>
+            </div>
+        </div>
+    </div>
+    <div id="signup_modal" class="modal">
+        <div class="modal_content">
+            <span class="close">&times;</span>
+            <div class="input_field">
+                <input type="text" placeholder="Email" id="new_email" autocomplete="off">
+                <input type="text" placeholder="Username" id="new_user" autocomplete="off">
+                <input type="text" placeholder="Password" id="new_password" autocomplete="off">
+                <button id="modal_signup_btn">Sign up</button>
+            </div>
+        </div>
+    </div>
+    <div id="playlist_add_modal" class="modal">
+        <div class="modal_content">
+            <span class="close">&times;</span>
+            <div id="playlist_add_boxes"></div>
+        </div>
+    </div>
+</body>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<link rel="stylesheet" href="style.css">
+</html>
