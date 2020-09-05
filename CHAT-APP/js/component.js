@@ -61,6 +61,12 @@ component.chatPage = `
 <div class="chat_container">
 <div class="header">MindX chat</div>
 <div class="main">
+    <div class="aside_left">
+        <div class="create_conversation">
+            <button class="btn cursor_pointer" id="create_conversation">+ New conversation</button>
+        </div>
+        <div class="list_conversations"></div>
+    </div>
     <div class="conversation_detail">
         <div class="conversation_title"></div>
         <div class="list_messages"></div>
@@ -72,5 +78,24 @@ component.chatPage = `
         </form>
     </div>
 </div>
+</div>
+`
+
+component.createConversationPage = `
+<div class="create_conversation_wrapper">
+    <div class="header">MindX chat</div>
+    <form id="create_conversation_form" style="width: 60%;margin: auto;margin-top: 20px;">
+        <h4>Create a new conversation</h4>
+        <div class="input_wrapper">
+            <input type="text" placeholder="Conversation title" name="title" autocomplete="off">
+            <div class="error" id="create_conversation_title_error"></div>
+        </div>
+        <div class="input_wrapper">
+            <input type="text" placeholder="Friend email" name="email" autocomplete="off">
+            <div class="error" id="create_conversation_email_error"></div>
+        </div>
+        <button class="btn">Save</button>
+        <button class="btn btn_bg_light" type="button" id="redirect_to_chat">Cancel</button>
+    </form>
 </div>
 `

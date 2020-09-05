@@ -22,12 +22,14 @@
 
 .chat_container .main {
     height: calc(100vh - 64px);
+    display: flex;
 }
 
 .chat_container .conversation_detail {
     height: 100%;
     display: flex;
     flex-direction: column;
+    width: 85%;
 }
 
 .chat_container .list_messages {
@@ -80,4 +82,31 @@
 
 .list_messages .message.their .content {
     background-color: #dbdbdb;
+}
+
+.chat_container .aside_left {
+    width: 15%;
+    height: 100%;
+    border-right: solid 1px #dbdbdb;
+}
+
+.chat_container .aside_left .create_conversation {
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: solid 1px #dbdbdb;
+}
+
+.chat_container .aside_left .list_conversations .conversation {
+    padding: 10px;
+}
+
+.chat_container .aside_left .list_conversations .conversation.current{
+    background: #dbdbdb;
+}
+
+.create_conversation_wrapper #create_conversation_form h4 {
+    font-size: 23px;
+    margin-bottom: 10px;
 }

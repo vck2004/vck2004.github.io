@@ -36,11 +36,12 @@ model.login = (data) => {
 }
 
 model.getConversations = async () => {
-    const response = await firebase.firestore().collection('conversations').where('users','array-contains',model.currentUser.email).get()
+    const response = await firebase.firestore().collection('conversations').where('users', 'array-contains', model.currentUser.email).get()
     model.conversations = getManyDocument(response)
-    if(model.conversations.length > 0){
+    if (model.conversations.length > 0) {
         model.currentConversation = model.conversations[0]
         view.showCurrentConversation()
+        view.showConversations()
     }
 }
 
@@ -53,18 +54,28 @@ model.addMessage = (message) => {
 
 model.listenConversationChange = () => {
     let isFirstRun = true
-    firebase.firestore().collection('conversations').where('users','array-contains',model.currentUser.email).onSnapshot((snapshot) => {
-        if(isFirstRun){
+    firebase.firestore().collection('conversations').where('users', 'array-contains', model.currentUser.email).onSnapshot((snapshot) => {
+        if (isFirstRun) {
             isFirstRun = false
             return
         }
-        for (oneChange of snapshot.docChanges()){
+        for (oneChange of snapshot.docChanges()) {
             const docData = getOneDocument(oneChange.doc)
-            if(docData.id === model.currentConversation.id) {
+            if (docData.id === model.currentConversation.id) {
                 model.currentConversation = docData
                 view.addMessage(model.currentConversation.messages[model.currentConversation.messages.length - 1])
                 view.scrollToEndElement()
             }
+            for (let i = 0; i < model.conversations.length; i++) {
+                if (model.conversations[i].id === docData.id) {
+                    model.conversations[i] = docData
+                }
+            }
         }
     })
+}
+
+model.addConversation = (newConversation) => {
+    const dataToCreate = newConversation
+    firebase.firestore().collection('conversations').add(dataToCreate)
 }

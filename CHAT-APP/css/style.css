@@ -31,3 +31,7 @@
 .error {
     color: red;
 }
+
+.btn_bg_light {
+    background: #dbdbdb;
+}
