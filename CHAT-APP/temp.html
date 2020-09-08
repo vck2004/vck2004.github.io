@@ -11,22 +11,41 @@
 </head>
 
 <body>
-    <div class="create_conversation_wrapper">
+    <div class="chat_container">
         <div class="header">MindX chat</div>
-        <form id="create_conversation_form" style="width: 60%;margin: auto;margin-top: 20px;">
-            <h4>Create a new conversation</h4>
-            <div class="input_wrapper">
-                <input type="text" placeholder="Conversation title" name="title" autocomplete="off">
-                <div class="error" id="create_conversation_title_error"></div>
+        <div class="main">
+            <div class="aside_left">
+                <div class="create_conversation">
+                    <button class="btn cursor_pointer" id="create_conversation">+ New conversation</button>
+                </div>
+                <div class="list_conversations"></div>
             </div>
-            <div class="input_wrapper">
-                <input type="email" placeholder="Friend email" name="email" autocomplete="off">
-                <div class="error" id="create_conversation_email_error"></div>
+            <div class="conversation_detail">
+                <div class="conversation_title"></div>
+                <div class="list_messages"></div>
+                <form id="send_message_form">
+                    <div class="input_wrapper">
+                        <input type="text" placeholder="Type a message" name="message" autocomplete="off">
+                    </div>
+                    <button type="submit"><i class="fa fa-paper-plane cursor_pointer" aria-hidden="true"></i></button>
+                </form>
             </div>
-            <button class="btn">Save</button>
-            <button class="btn btn_bg_light" type="button" id="redirect_to_chat">Cancel</button>
-        </form>
-    </div>
+            <div class="aside_right">
+                <div class="list_users">
+                    <div class="user_email" title="vckkcv2004@gmail.com">vckkcv2004@gmail.com</div>
+                    <div class="user_email">vckkcv2004@gmail.com</div>
+                    <div class="user_email" title="vckkcv2004@gmail.com">vckkcv200gggggggggggggggggggg4@gmail.com</div>
+                </div>
+                <form id="add_user_form" class="mt_1">
+                    <div class="input_wrapper">
+                        <input type="text" name="email" placeholder="Friend email" autocomplete="off">
+                        <div class="error" id="email_error"></div>
+                    </div>
+                    <button class="btn cursor_pointer">Add</button>
+                </form>
+            </div>
+        </div>
+        </div>
 </body>
 
 </html>

@@ -61,21 +61,45 @@ model.listenConversationChange = () => {
         }
         for (oneChange of snapshot.docChanges()) {
             const docData = getOneDocument(oneChange.doc)
-            if (docData.id === model.currentConversation.id) {
-                model.currentConversation = docData
-                view.addMessage(model.currentConversation.messages[model.currentConversation.messages.length - 1])
-                view.scrollToEndElement()
-            }
-            for (let i = 0; i < model.conversations.length; i++) {
-                if (model.conversations[i].id === docData.id) {
-                    model.conversations[i] = docData
+            if(oneChange.type === 'modified'){
+                if (docData.id === model.currentConversation.id) {
+                    if (model.currentConversation.users.length !== docData.users.length){
+                        view.addUser(docData.users[docData.users.length - 1])
+                        document.querySelector('.conversation.current .num_of_user').innerHTML = `${docData.users.length} users`
+                    } else {
+                        view.addMessage(docData.messages[docData.messages.length - 1])
+                        view.scrollToEndElement()
+                    }
+                    model.currentConversation = docData
                 }
+                for (let i = 0; i < model.conversations.length; i++) {
+                    if (model.conversations[i].id === docData.id) {
+                        model.conversations[i] = docData
+                    }
+                }
+            }
+            if (oneChange.type === 'added'){
+                model.conversations.push(docData)
+                view.addConversation(docData)
             }
         }
     })
 }
 
-model.addConversation = (newConversation) => {
-    const dataToCreate = newConversation
+model.createConversation = ({title, email}) => {
+    const dataToCreate = {
+        createdAt: new Date().toISOString(),
+        messages: [],
+        title,
+        users: [email, model.currentUser.email]
+    }
     firebase.firestore().collection('conversations').add(dataToCreate)
+    view.setActiveScreen('chatPage', true)
+}
+
+model.addUser = (email) => {
+    dataToUpdate = {
+        users: firebase.firestore.FieldValue.arrayUnion(email)
+    }
+    firebase.firestore().collection('conversations').doc(model.currentConversation.id).update(dataToUpdate)
 }

@@ -77,6 +77,16 @@ component.chatPage = `
             <button type="submit"><i class="fa fa-paper-plane cursor_pointer" aria-hidden="true"></i></button>
         </form>
     </div>
+    <div class="aside_right">
+        <div class="list_users"></div>
+        <form id="add_user_form" class="mt_1">
+            <div class="input_wrapper">
+                <input type="text" name="email" placeholder="Friend email" autocomplete="off">
+                <div class="error" id="add_user_email_error"></div>
+            </div>
+            <button class="btn cursor_pointer">Add</button>
+        </form>
+    </div>
 </div>
 </div>
 `

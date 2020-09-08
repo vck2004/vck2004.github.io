@@ -17,3 +17,20 @@ controller.login = (data) => {
         model.login(data)
     }
 }
+
+controller.createConversation = ({title, email}) => {
+    view.setErrorMessage('create_conversation_title_error', title.trim() === '' ? 'Please input title' : '')
+    view.setErrorMessage('create_conversation_email_error', email.trim() === '' ? 'Please input email' : '')
+    if (title.trim() !== '' && email.trim() !== '') {
+        model.createConversation({title, email})
+    }
+}
+
+controller.addUser = (email) => {
+    if (email.trim() === ''){
+        view.setErrorMessage('add_user_email_error','Please input user email')
+    } else {
+        view.setErrorMessage('add_user_email_error','')
+        model.addUser(email)
+    }
+}
