@@ -65,7 +65,7 @@ model.listenConversationChange = () => {
                 if (docData.id === model.currentConversation.id) {
                     if (model.currentConversation.users.length !== docData.users.length){
                         view.addUser(docData.users[docData.users.length - 1])
-                        document.querySelector('.conversation.current .num_of_user').innerHTML = `${docData.users.length} users`
+                        view.addUserInConversation(docData.users.length)
                     } else {
                         view.addMessage(docData.messages[docData.messages.length - 1])
                         view.scrollToEndElement()
@@ -76,6 +76,9 @@ model.listenConversationChange = () => {
                     if (model.conversations[i].id === docData.id) {
                         model.conversations[i] = docData
                     }
+                }
+                if(docData.messages[docData.messages.length-1].owner!==model.currentUser.email){
+                    view.showNotification(docData.id)
                 }
             }
             if (oneChange.type === 'added'){

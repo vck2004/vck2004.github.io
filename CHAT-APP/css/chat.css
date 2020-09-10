@@ -100,6 +100,7 @@
 
 .chat_container .aside_left .list_conversations .conversation {
     padding: 10px;
+    position: relative;
 }
 
 .chat_container .aside_left .list_conversations .conversation.current{
@@ -120,4 +121,15 @@
 .chat_container .aside_right .user_email {
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.chat_container .aside_left .list_conversations .notification {
+    background: #007cfd;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 15px;
+    right: 12px;
+    display: none;
 }

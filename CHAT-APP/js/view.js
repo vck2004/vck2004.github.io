@@ -38,6 +38,9 @@ view.setActiveScreen = (screenName, fromCreateConversation = false) => {
             document.getElementById('app').innerHTML = component.chatPage
             const sendMessageForm = document.getElementById('send_message_form')
             const addUserForm = document.getElementById('add_user_form')
+            sendMessageForm.message.addEventListener('click',() => {
+                view.hideNotification(model.currentConversation.id)
+            })
             sendMessageForm.addEventListener('submit', (e) => {
                 e.preventDefault()
                 const message = {
@@ -133,18 +136,21 @@ view.addConversation = (conversation) => {
     const conversationWrapper = document.createElement('div')
     conversationWrapper.classList.add('conversation')
     conversationWrapper.classList.add('cursor_pointer')
+    conversationWrapper.id = conversation.id
     if (conversation.id === model.currentConversation.id) {
         conversationWrapper.classList.add('current')
     }
     conversationWrapper.innerHTML = `
         <div class="left_conversation_title">${conversation.title}</div>
         <div class="num_of_user">${conversation.users.length} users</div>
+        <div class="notification"></div>
     `
     conversationWrapper.addEventListener('click', () => {
         model.currentConversation = model.conversations.filter(item => item.id === conversation.id)[0]
         view.showCurrentConversation()
         document.querySelector('.conversation.current').classList.remove('current')
         conversationWrapper.classList.add('current')
+        view.hideNotification(conversation.id)
     })
     document.querySelector('.list_conversations').appendChild(conversationWrapper)
 }
@@ -152,6 +158,21 @@ view.addConversation = (conversation) => {
 view.addUser = (user) => {
     const addWrapper = document.createElement('div')
     addWrapper.classList.add('user_email')
+    addWrapper.title = user
     addWrapper.innerHTML = user
     document.querySelector('.list_users').appendChild(addWrapper)
+}
+
+view.addUserInConversation = (numberUser) => {
+    document.querySelector('.conversation.current .num_of_user').innerText = `${numberUser} users`
+}
+
+view.showNotification = (docId) => {
+    const conversation = document.getElementById(docId)
+    conversation.querySelector('.notification').style.display = 'block'
+}
+
+view.hideNotification = (docId) => {
+    const conversation = document.getElementById(docId)
+    conversation.querySelector('.notification').style.display = 'none'
 }
