@@ -29,3 +29,9 @@
 .name_wrapper .input_wrapper {
     width: 48%;
 }
+
+@media screen and (max-width: 768px) {
+    .register_container #register_form {
+        width: 100%;
+    }
+}

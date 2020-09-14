@@ -145,6 +145,20 @@ view.addConversation = (conversation) => {
         <div class="num_of_user">${conversation.users.length} users</div>
         <div class="notification"></div>
     `
+    const mediaQuerry = window.matchMedia('(max-width: 768px)')
+    mediaQuerry.addListener((e)=>{
+        if (e.matches) {
+            conversationWrapper.firstElementChild.innerText = conversation.title.charAt(0).toUpperCase()
+            document.querySelector('#create_conversation').innerText = '+'
+        } else {
+            conversationWrapper.firstElementChild.innerText = conversation.title
+            document.querySelector('#create_conversation').innerText = '+ New conversation'
+        }
+    })
+    if(mediaQuerry.matches) {
+        conversationWrapper.firstElementChild.innerText = conversation.title.charAt(0).toUpperCase()
+        document.querySelector('#create_conversation').innerText = '+'
+    }
     conversationWrapper.addEventListener('click', () => {
         model.currentConversation = model.conversations.filter(item => item.id === conversation.id)[0]
         view.showCurrentConversation()

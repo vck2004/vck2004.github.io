@@ -133,3 +133,38 @@
     right: 12px;
     display: none;
 }
+
+@media screen and (max-width: 768px) {
+    .chat_container .aside_right {
+        display: none;
+    }
+    .chat_container .conversation_detail {
+        width: 85%;
+    }
+    .chat_container .aside_left .num_of_user {
+        display: none;
+    }
+    .chat_container .aside_left .list_conversations .conversation {
+        width: 64px;
+        height: 64px;
+        margin: auto;
+        margin-top: 10px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 64px;
+        padding: 0;
+        border: solid 1px #dbdbdb;
+    }
+    .chat_container .aside_left .list_conversations .notification {
+        top: 24px;
+        right: 0px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .chat_container .aside_left .list_conversations .conversation {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+    }
+}
